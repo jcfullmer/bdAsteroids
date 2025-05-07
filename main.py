@@ -3,6 +3,7 @@ from constants import *
 from player import Player
 
 
+
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -15,6 +16,7 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
+        player.rotate(dt)
         screen.fill("black")
         player.draw(screen)
         pygame.display.flip()
