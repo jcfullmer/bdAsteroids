@@ -4,6 +4,7 @@ from constants import *
 from player import *
 from asteroid import *
 from asteroidfield import *
+from shots import *
 
 updatable = pygame.sprite.Group()
 drawable = pygame.sprite.Group()
@@ -31,9 +32,14 @@ def main():
 
         updatable.update(dt)
         for asteroid in asteroids:
-            if player.collision(asteroid):
-                print("Game Over!")
-                sys.exit()
+            for shot in shots:
+                if player.collision(asteroid):
+                    print("Game Over!")
+                    sys.exit()
+                elif shot.collision(asteroid):
+                    shot.kill()
+                    asteroid.split()
+                
         screen.fill("black")
         for i in drawable:
             i.draw(screen)
